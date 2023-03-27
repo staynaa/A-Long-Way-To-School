@@ -5,45 +5,77 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
 
+
+    #region Player Unity Objects
+
     // Initialize RigidBody 2D Object
     private Rigidbody2D rb;
 
     //Initialize Animator object 
     private Animator animator;
+    
+    #endregion
 
 
-    [Tooltip("This is a reference for a standing collider")]
+    #region Collider Reference Variables
+
+    [Header("Collider Reference Variables")]
+
+    [Tooltip("Reference to a collider being used as \"standing\" collider")]
     // Reference To Player's Standing Collider
     [SerializeField] private Collider2D standingCollider; 
 
-    // Reference To Player's GroundCheck Collider For GroundCheck GameObject 
+
+    [Tooltip("Reference to player's GroundCheck collider child")]
+    // Reference To Player's GroundCheck Collider 
     [SerializeField] private Transform groundCheckCollider;
 
-    // Reference To Player's OverCheck Collider For GroundCheck GameObject 
+
+    [Tooltip("Reference to player's OverheadCheck collider child")]
+    // Reference To Player's OverCheck Collider 
     [SerializeField] Transform overheadCheckCollider;
     
+
+    [Tooltip("Reference to ground that player can jump on while GroundCheck collider is in contact with in")]
     // Reference LayerMask for Jumpable Ground 
     [SerializeField] private LayerMask jumpableGround;
 
-    
+    #endregion 
+
+
+    #region Movement Variables  
+
     //Player's x-axis value
     private float horizontalMovement;
 
+    [Header("Movement Variables")]
+   
+    /*IMPORTANT:
+    If any changes are made to the horizontal or run variable values
+    changes for the animations associated with that variable must be made in the unity animator
+    in regards to their parameters values so animations are in sync with those movements 
+    */ 
+
+    [Tooltip("Horizontal movement speed of player")]
     //Horizontal movement speed of player;
     [SerializeField] private float speed = 2f;
 
+    [Tooltip("Sprint speed of player")]
     //Run Speed of player
-    private float runSpeedModifer = 2f;
+    [SerializeField] private float runSpeedModifer = 2f;
 
-
+    [Tooltip("Horizontal movement speed of player while crouch")]
     // Crouch speed of player
-    private float crouchSpeedModifier = 0.5f;
+    [SerializeField] private float crouchSpeedModifier = 0.5f;
 
+    [Tooltip("Vertical power of player")]
     // Vertical Movement Power Of Player
     [SerializeField] private float verticalPower = 150;
+    
+    #endregion
 
 
-
+    #region Constant Variables
 
     // GroundCheck GameOject Radius
     const float GROUND_CHECK_RADIUS = 0.2f;
@@ -51,8 +83,10 @@ public class PlayerMovement : MonoBehaviour
     // OverheadCheck GameOject Radius
     const float OVERHEAD_CHECK_RADIUS = 0.2f;
 
+    #endregion
 
 
+    #region Boolean Variables
 
     //Determine If Player Is Facing Right 
     private bool isFacingRight = true;
@@ -67,7 +101,9 @@ public class PlayerMovement : MonoBehaviour
     private bool isGrounded = false;
 
     //Determine if Player is crouched button is pressed/held
-    [SerializeField]private bool crouchedPressed = false;
+    private bool crouchedPressed = false;
+
+    #endregion
 
 
     // Awake is called before the start of application
@@ -96,7 +132,7 @@ public class PlayerMovement : MonoBehaviour
         // Store value given by the key presses of button associated horinzontal movement
         horizontalMovement = Input.GetAxisRaw("Horizontal");
 
-
+        
         // If left-shift is clicked and held down enable isRunning 
         if(Input.GetKeyDown(KeyCode.LeftShift))
         {
@@ -109,7 +145,7 @@ public class PlayerMovement : MonoBehaviour
             isRunning = false;
         }
 
-        // Vertical Movement Input For Player
+
         //If jump button is pressed/helded jump is enable
         if (Input.GetButtonDown("Jump"))
         {
@@ -158,6 +194,8 @@ public class PlayerMovement : MonoBehaviour
      {
         isGrounded = false;
 
+
+        // Detect if player is touching the ground
         Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheckCollider.position,GROUND_CHECK_RADIUS,jumpableGround);
         if(colliders.Length > 0)
         {
@@ -190,6 +228,7 @@ public class PlayerMovement : MonoBehaviour
         //If there are any, remain crouch, otherwise un-Crouch
         if(!crouchFlag)
         {
+            //Detect if player has anything overhead
             if(Physics2D.OverlapCircle(overheadCheckCollider.position,OVERHEAD_CHECK_RADIUS,jumpableGround))
             {
                 crouchFlag = true;
@@ -199,7 +238,6 @@ public class PlayerMovement : MonoBehaviour
 
         //If Crouch Is Pressed Disable The Standing Collider + Enable animate crouching + Reduce Speed
         //If Crouch Is Released Resume Orginial Speed + Enable The Standing Collider + Enable Crouch Animation
-
         if(isGrounded)
         {
             // Set StandingCollider to Negation Of CrouchFlag
