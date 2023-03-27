@@ -1639,7 +1639,7 @@ MonoBehaviour:
   speed: 2
   runSpeedModifer: 2
   crouchSpeedModifier: 0.5
-  verticalPower: 150
+  verticalPower: 75
 --- !u!61 &1484421527
 BoxCollider2D:
   m_ObjectHideFlags: 0

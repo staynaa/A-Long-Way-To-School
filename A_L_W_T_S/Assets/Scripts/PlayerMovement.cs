@@ -70,7 +70,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Tooltip("Vertical power of player")]
     // Vertical Movement Power Of Player
-    [SerializeField] private float verticalPower = 150;
+    [SerializeField] private float verticalPower = 75;
     
     #endregion
 
@@ -150,7 +150,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump"))
         {
             jump  = true;
-             animator.SetBool("Jump",true);
+            animator.SetBool("Jump",true);
         }
 
         //If jump button is released jump is disable
@@ -163,7 +163,7 @@ public class PlayerMovement : MonoBehaviour
         //If Crouch button is pressed/helded Crouch is enable
         if (Input.GetButtonDown("Crouch"))
         {
-             crouchedPressed = true;
+            crouchedPressed = true;
         }
 
         //If Crouch button is released Crouch is disable
@@ -298,7 +298,6 @@ public class PlayerMovement : MonoBehaviour
             flip();
         }
 
-        Debug.Log(rb.velocity.x);
 
         // 0 idle, 4 walking , 8 running
         //Set the flot xVelocity accroding to the x value of the RigidBody2D Velocity
