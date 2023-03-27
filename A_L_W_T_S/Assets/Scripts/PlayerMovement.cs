@@ -12,17 +12,17 @@ public class PlayerMovement : MonoBehaviour
     private Animator animator;
 
 
-
+    [Tooltip("This is a reference for a standing collider")]
     // Reference To Player's Standing Collider
     [SerializeField] private Collider2D standingCollider; 
 
     // Reference To Player's GroundCheck Collider For GroundCheck GameObject 
     [SerializeField] private Transform groundCheckCollider;
 
-   // Reference To Player's OverCheck Collider For GroundCheck GameObject 
+    // Reference To Player's OverCheck Collider For GroundCheck GameObject 
     [SerializeField] Transform overheadCheckCollider;
-   
-   // Reference LayerMask for Jumpable Ground 
+    
+    // Reference LayerMask for Jumpable Ground 
     [SerializeField] private LayerMask jumpableGround;
 
     
@@ -30,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
     private float horizontalMovement;
 
     //Horizontal movement speed of player;
-   [SerializeField] private float speed = 2f;
+    [SerializeField] private float speed = 2f;
 
     //Run Speed of player
     private float runSpeedModifer = 2f;
@@ -44,15 +44,16 @@ public class PlayerMovement : MonoBehaviour
 
 
 
+
     // GroundCheck GameOject Radius
     const float GROUND_CHECK_RADIUS = 0.2f;
 
     // OverheadCheck GameOject Radius
-     const float OVERHEAD_CHECK_RADIUS = 0.2f;
+    const float OVERHEAD_CHECK_RADIUS = 0.2f;
 
 
-    
-    
+
+
     //Determine If Player Is Facing Right 
     private bool isFacingRight = true;
 
@@ -63,7 +64,7 @@ public class PlayerMovement : MonoBehaviour
     private bool jump = false;
 
     //Determine If Player Is Grounded 
-     private bool isGrounded = false;
+    private bool isGrounded = false;
 
     //Determine if Player is crouched button is pressed/held
     [SerializeField]private bool crouchedPressed = false;
@@ -72,25 +73,23 @@ public class PlayerMovement : MonoBehaviour
     // Awake is called before the start of application
     void Awake()
     {
-         // Reference to player's rigidBody 2D
+        // Reference to player's rigidBody 2D
         rb = GetComponent<Rigidbody2D>();
 
+        //Reference to player's Animator
         animator = GetComponent<Animator>();
-
-
-        
     }
 
+    
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
-    void Update()
+     void Update()
     {
-
         //Set the yVelocity in the animator 
         animator.SetFloat("yVelocity",rb.velocity.y);
  
@@ -115,7 +114,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump"))
         {
             jump  = true;
-            animator.SetBool("Jump",true);
+             animator.SetBool("Jump",true);
         }
 
         //If jump button is released jump is disable
@@ -125,10 +124,10 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
-         //If Crouch button is pressed/helded Crouch is enable
+        //If Crouch button is pressed/helded Crouch is enable
         if (Input.GetButtonDown("Crouch"))
         {
-            crouchedPressed = true;
+             crouchedPressed = true;
         }
 
         //If Crouch button is released Crouch is disable
@@ -136,10 +135,6 @@ public class PlayerMovement : MonoBehaviour
         {
             crouchedPressed = false;
         }
-
-        
-
-
     }
 
 
@@ -182,10 +177,10 @@ public class PlayerMovement : MonoBehaviour
     bool crouchFlag - Value assocaited with Weather Player is crouching or not
     Description: Manipulates Movement For Player
 */     
-     void move(float dir, bool jumpFlag, bool crouchFlag)
+    void move(float dir, bool jumpFlag, bool crouchFlag)
     {
 
-     #region Jump & Crouch
+        #region Jump & Crouch
 
 
 
@@ -208,7 +203,7 @@ public class PlayerMovement : MonoBehaviour
         if(isGrounded)
         {
             // Set StandingCollider to Negation Of CrouchFlag
-             standingCollider.enabled = !crouchFlag;
+            standingCollider.enabled = !crouchFlag;
     
             //If The Player Is Grounded And Pressed `space` Jump
             if(jumpFlag)
@@ -219,11 +214,14 @@ public class PlayerMovement : MonoBehaviour
                 rb.AddForce(new Vector2(0f,verticalPower));
             }
         }
-         animator.SetBool("Crouch", crouchFlag);
-     #endregion
+         
+        animator.SetBool("Crouch", crouchFlag);
+     
+        #endregion
      
 
-     #region Horizontal Movement & Run
+        #region Horizontal Movement & Run
+        
         // Horizontal movement for Player
 
         //Set value of player x-axis using dir and speed
@@ -239,7 +237,7 @@ public class PlayerMovement : MonoBehaviour
         //If crouching mulitply with the crouch modifier
         if(crouchFlag)
         {
-             xVal *= crouchSpeedModifier;
+            xVal *= crouchSpeedModifier;
         }
 
         //Create Vector2 object for the player velocity
@@ -250,7 +248,6 @@ public class PlayerMovement : MonoBehaviour
 
 
         //Facing direction for player sprite
-
         // If looking right and clicked right (flip to the left)
        if(dir < 0 && isFacingRight)
         {
@@ -268,6 +265,7 @@ public class PlayerMovement : MonoBehaviour
         // 0 idle, 4 walking , 8 running
         //Set the flot xVelocity accroding to the x value of the RigidBody2D Velocity
         animator.SetFloat("xVelocity", Mathf.Abs(rb.velocity.x));
+        
         #endregion
     
     }
