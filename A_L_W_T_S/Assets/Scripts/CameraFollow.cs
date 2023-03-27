@@ -45,13 +45,13 @@ public class CameraFollow : MonoBehaviour
   //Limit it to the min an max values
 
   //Bounded position of camera 
-  Vector3 boundPosition = new Vector3(
+   Vector3 boundPosition = new Vector3(
     Mathf.Clamp(targetPosition.x,minValues.x,maxValues.x),
     Mathf.Clamp(targetPosition.y,minValues.x,maxValues.y),
     Mathf.Clamp(targetPosition.z,minValues.x,maxValues.z));
 
 
-  Vector3 smoothPosition = Vector3.Lerp(transform.position,boundPosition,smoothFactor * Time.fixedDeltaTime);
+  Vector3 smoothPosition = Vector3.Lerp(transform.position,targetPosition,smoothFactor * Time.fixedDeltaTime);
   transform.position = smoothPosition;
   }
    

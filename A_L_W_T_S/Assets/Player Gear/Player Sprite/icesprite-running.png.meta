@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 213a5c5e2b779427d8b7542bf7f943c1
+guid: 2096d533bb17b458383ab54fe7b328c9
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -117,7 +117,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: icesprite-crouchtag-revised_0
+      name: icesprite-running_0
       rect:
         serializedVersion: 2
         x: 0
@@ -131,14 +131,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cc637dcd388d941fd981230a5e0f90ac
-      internalID: -1697220845
+      spriteID: 757cd9dff4449416a9f75bed3e06038b
+      internalID: 1314258837
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: icesprite-crouchtag-revised_1
+      name: icesprite-running_1
       rect:
         serializedVersion: 2
         x: 47
@@ -152,8 +152,134 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fa1816445d29d47ba90e5b080e5b226e
-      internalID: -377201740
+      spriteID: 733b07910e0974509bfaf199354f9721
+      internalID: 360804045
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icesprite-running_2
+      rect:
+        serializedVersion: 2
+        x: 94
+        y: 0
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b0d3e931026f64245bf3f98b10e546b2
+      internalID: 1321339487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icesprite-running_3
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 0
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a4a3cb68e88b4d45a2e371104293ae9
+      internalID: 1208984323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icesprite-running_4
+      rect:
+        serializedVersion: 2
+        x: 188
+        y: 0
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2aedbdb07f7154efda4fa7922cfdc4f3
+      internalID: 293688246
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icesprite-running_5
+      rect:
+        serializedVersion: 2
+        x: 235
+        y: 0
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ce5c795d8f06410095ac509bff02af5
+      internalID: 834212331
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icesprite-running_6
+      rect:
+        serializedVersion: 2
+        x: 282
+        y: 0
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 063a2a437a0334f2eb6df788ff910836
+      internalID: -1941334242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icesprite-running_7
+      rect:
+        serializedVersion: 2
+        x: 329
+        y: 0
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8139e087b9de74520a1322aa82f67417
+      internalID: -1933842285
       vertices: []
       indices: 
       edges: []
@@ -169,8 +295,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      icesprite-crouchtag-revised_0: -1697220845
-      icesprite-crouchtag-revised_1: -377201740
+      icesprite-running_5: 834212331
+      icesprite-running_7: -1933842285
+      icesprite-running_0: 1314258837
+      icesprite-running_2: 1321339487
+      icesprite-running_1: 360804045
+      icesprite-running_6: -1941334242
+      icesprite-running_3: 1208984323
+      icesprite-running_4: 293688246
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
