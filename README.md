@@ -8,8 +8,12 @@ Gaming Engine: Unity
 Platform: Computers 
  
 Credits:
-Stayna Alexandre (Project Leader) - Environment Designer
-Charles Dubreuil - Gameplay Designer 
-Connie Liu - User Interface Designer 
-Joel Matlala - Sound Designer
+
+ * Stayna Alexandre (Project Leader) - Environment Designer
+
+ * Charles Dubreuil - Gameplay Designer 
+
+ * Connie Liu - User Interface Designer 
+
+ * Joel Matlala - Sound Designer
   
