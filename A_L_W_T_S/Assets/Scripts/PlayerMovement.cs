@@ -70,7 +70,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Tooltip("Vertical power of player")]
     // Vertical Movement Power Of Player
-    [SerializeField] private float verticalPower = 75;
+    [SerializeField] private float verticalPower = 6;
     
     #endregion
 
@@ -94,11 +94,11 @@ public class PlayerMovement : MonoBehaviour
     //Determine If Player Is Running
     private bool isRunning = false;
 
-    //Determine If Player Is Jumping;
-    private bool jump = false;
-
     //Determine If Player Is Grounded 
     private bool isGrounded = false;
+
+    //Determine If Player Is Coyote Jumping
+    bool coyoteJump;
 
     //Determine if Player is crouched button is pressed/held
     private bool crouchedPressed = false;
@@ -149,15 +149,10 @@ public class PlayerMovement : MonoBehaviour
         //If jump button is pressed/helded jump is enable
         if (Input.GetButtonDown("Jump"))
         {
-            jump  = true;
-            animator.SetBool("Jump",true);
+            Jump();
         }
 
-        //If jump button is released jump is disable
-        else if (Input.GetButtonUp("Jump"))
-        {
-            jump = false;
-        }
+        
 
 
         //If Crouch button is pressed/helded Crouch is enable
@@ -178,7 +173,7 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate() 
     {
         GroundCheck();
-        move(horizontalMovement,jump,crouchedPressed);
+        move(horizontalMovement,crouchedPressed);
     }
 
 
@@ -191,7 +186,9 @@ public class PlayerMovement : MonoBehaviour
     
     void GroundCheck()
 
-     {
+     {  
+        // Track previous state of isGrounded Variable 
+        bool wasGrounded = isGrounded;
         isGrounded = false;
 
 
@@ -200,6 +197,19 @@ public class PlayerMovement : MonoBehaviour
         if(colliders.Length > 0)
         {
             isGrounded = true;
+
+            //Detect landing of play *Double jump placeholder*
+            if(!wasGrounded)
+            {
+
+            }
+        }
+        else
+        {
+            if(wasGrounded)
+            {
+                StartCoroutine(CoyoteJumpDelay()); 
+            }
         }
 
         //As long as we are grounded the "Jump" Bool;
@@ -207,18 +217,53 @@ public class PlayerMovement : MonoBehaviour
         animator.SetBool("Jump",!isGrounded);
      } 
 
+    // Timer for coyote jump to be enable
+     IEnumerator CoyoteJumpDelay()
+     {
+        coyoteJump = true;
+        yield return new WaitForSeconds(0.2f);
+        coyoteJump = false;
+     }
+
+    
+    /* 
+    Method Name: Jump()
+    Description: Determine if player is grounded if player is 
+    grounded allow them to jump if player is not grounded disbales jumping
+    */
+    void Jump()
+    {
+        //If Crouch Is Pressed Disable The Standing Collider + Enable animate crouching + Reduce Speed
+        //If Crouch Is Released Resume Orginial Speed + Enable The Standing Collider + Enable Crouch Animation
+          if(isGrounded)
+        {
+            rb.velocity = Vector2.up * verticalPower; 
+            animator.SetBool("Jump",true);
+        }
+        else
+        {
+            if(coyoteJump)
+            {
+            rb.velocity = Vector2.up * verticalPower; 
+            animator.SetBool("Jump",true);
+            }
+        }
+    }
+
+
+
+
 /* 
     Method Name: move()
     Parameter: 
     float dir - Value associated with direction of player in regards to x-axis 
-    bool jumpFlag - Value assocaited with weather player is able to Jump or Not
     bool crouchFlag - Value assocaited with Weather Player is crouching or not
     Description: Manipulates Movement For Player
 */     
-    void move(float dir, bool jumpFlag, bool crouchFlag)
+    void move(float dir,bool crouchFlag)
     {
 
-        #region Jump & Crouch
+        #region Crouch
 
 
 
@@ -235,26 +280,11 @@ public class PlayerMovement : MonoBehaviour
             }
     
         }
+        //Set StandingCollider to Negation Of CrouchFlag
+        standingCollider.enabled = !crouchFlag;
 
-        //If Crouch Is Pressed Disable The Standing Collider + Enable animate crouching + Reduce Speed
-        //If Crouch Is Released Resume Orginial Speed + Enable The Standing Collider + Enable Crouch Animation
-        if(isGrounded)
-        {
-            // Set StandingCollider to Negation Of CrouchFlag
-            standingCollider.enabled = !crouchFlag;
-    
-            //If The Player Is Grounded And Pressed `space` Jump
-            if(jumpFlag)
-            {
-                
-                jumpFlag = false;
-                //Add Jump Force
-                rb.AddForce(new Vector2(0f,verticalPower));
-            }
-        }
-         
         animator.SetBool("Crouch", crouchFlag);
-     
+       
         #endregion
      
 
@@ -307,7 +337,7 @@ public class PlayerMovement : MonoBehaviour
     
     }
 
-  /* 
+/* 
     Method Name: flip()
     Description: Changes the value of (boolean) "isFacingRight" from true/false 
     depending where player sprite if facing and rotates the player sprite to face 
