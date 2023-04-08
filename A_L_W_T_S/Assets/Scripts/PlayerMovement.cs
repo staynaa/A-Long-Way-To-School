@@ -126,6 +126,11 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
      void Update()
     {
+        //Locks Players Movement 
+        if (CanMove() == false)
+        {
+            return;
+        }
         //Set the yVelocity in the animator 
         animator.SetFloat("yVelocity",rb.velocity.y);
  
@@ -174,6 +179,22 @@ public class PlayerMovement : MonoBehaviour
     {
         GroundCheck();
         move(horizontalMovement,crouchedPressed);
+    }
+
+
+    
+    /* 
+    Method Name: CanMove() 
+    Description: Checks if player should be able to move or not.
+    */ 
+    bool CanMove()
+    {
+        bool can = true;
+        if(FindObjectOfType<InteractionSystem>().isExamining)
+        {
+            can = false;
+        }
+        return can;
     }
 
 

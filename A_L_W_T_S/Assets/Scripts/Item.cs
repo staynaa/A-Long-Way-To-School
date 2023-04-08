@@ -10,6 +10,14 @@ public class Item : MonoBehaviour
 
     //Initialize InteractionType Variable 
     [SerializeField] private InteractionType type;
+
+    [Header("Exmaine")]
+
+    //Description text of exmaine object
+    [SerializeField] public string descriptionText;
+
+    
+
   
     /* 
     Method Name: Reset()
@@ -26,8 +34,7 @@ public class Item : MonoBehaviour
     Description: Handle interaction with items 
     */
     
-    public void Interact()
-    
+    public void Interact() 
     {
         switch(type)
         {
@@ -40,16 +47,14 @@ public class Item : MonoBehaviour
                 gameObject.SetActive(false);
                
                 break;
-            
-           
+
             case InteractionType.Examine:
-                
+                //Call the Examine item in the interaction system
+                FindObjectOfType<InteractionSystem>().ExamineItem(this);
                 Debug.Log("E");
                 break;
-            
-           
-            default:
-               
+
+            default: 
                 break;
         }
     }   

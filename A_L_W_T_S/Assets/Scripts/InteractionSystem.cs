@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InteractionSystem : MonoBehaviour
 {
    
-    [Header("Detection Parameters")]
+    [Header("Detection Variables")]
     [Tooltip("Reference to object being used as \"interactChecker\"")]
     //Detection point of object
     [SerializeField] private Transform detectionPoint;
@@ -18,6 +19,19 @@ public class InteractionSystem : MonoBehaviour
 
     //Cache Trigger Object
     [SerializeField] private GameObject detectObject;
+
+    [Header("Examine Variables")]
+    //Examine window object
+    [SerializeField] private GameObject examineWindow;
+
+    //Examine object image
+    [SerializeField] private Image examineImage;
+    
+    //Examine object text
+    [SerializeField] private Text examineText;
+
+    //Determine if player is examining
+   public bool isExamining;
 
     [Header("Others")]
     //List of picked items
@@ -83,6 +97,7 @@ public class InteractionSystem : MonoBehaviour
 
     /* 
     Method Name: PickupItem()
+    Parameter: GameObject item - refrence to game item
     Description: Append detected pick up item to list 
     */
     public void PickUpItem(GameObject item)
@@ -90,4 +105,37 @@ public class InteractionSystem : MonoBehaviour
         pickedItems.Add(item);
     }
 
+
+    /* 
+    Method Name: ExamineItem()
+    Parameter: Item item - refrence to examine game item
+    Description: Display examine refrence examine 
+    */
+
+    public void ExamineItem(Item item)
+    {
+
+        if(isExamining)
+        {
+            //Hide an Examine Window
+            examineWindow.SetActive(false);
+            //disble the boolean
+            isExamining = false; 
+
+        }
+        else
+        {
+            //Show the item's in the middle
+            examineImage.sprite = item.GetComponent<SpriteRenderer>().sprite;
+        
+            //Write description text underneath the image
+            examineText.text = item.descriptionText;
+
+            //Display an Examine Window
+            examineWindow.SetActive(true);
+
+            //Enable the boolean
+            isExamining = true; 
+        } 
+    }
 }
