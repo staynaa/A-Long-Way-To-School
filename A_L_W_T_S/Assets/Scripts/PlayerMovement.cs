@@ -178,11 +178,11 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-/* 
+    /* 
     Method Name: groundCheck() 
     Description: Check If The GroundCheckObject Is Colliding With Other, 
     2D Collider That Are In The "Ground" Layer If Yes (isGrounded true) Else (isGrounded false)
-*/  
+    */  
     
     void GroundCheck()
 
@@ -253,13 +253,13 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-/* 
+    /* 
     Method Name: move()
     Parameter: 
     float dir - Value associated with direction of player in regards to x-axis 
     bool crouchFlag - Value assocaited with Weather Player is crouching or not
     Description: Manipulates Movement For Player
-*/     
+    */     
     void move(float dir,bool crouchFlag)
     {
 
@@ -317,12 +317,12 @@ public class PlayerMovement : MonoBehaviour
 
         //Facing direction for player sprite
         // If looking right and clicked right (flip to the left)
-       if(dir < 0 && isFacingRight)
+        if(dir < 0 && isFacingRight)
         {
             flip();
         }
        
-       // If looking left and clicked left (flip to the right)
+        // If looking left and clicked left (flip to the right)
         else if (dir > 0 && !isFacingRight)
         {
             flip();
@@ -337,12 +337,12 @@ public class PlayerMovement : MonoBehaviour
     
     }
 
-/* 
+    /* 
     Method Name: flip()
     Description: Changes the value of (boolean) "isFacingRight" from true/false 
     depending where player sprite if facing and rotates the player sprite to face 
     left or right
-*/  
+    */  
     private void flip()
     {
         isFacingRight = !isFacingRight;

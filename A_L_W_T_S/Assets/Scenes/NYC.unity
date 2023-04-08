@@ -1356,7 +1356,7 @@ GameObject:
   - component: {fileID: 895755265}
   - component: {fileID: 895755264}
   m_Layer: 10
-  m_Name: Square (1)
+  m_Name: Tombstone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1794,6 +1794,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   detectObject: {fileID: 0}
+  pickedItems: []
 --- !u!1 &1613470898
 GameObject:
   m_ObjectHideFlags: 0
@@ -1840,7 +1841,7 @@ GameObject:
   - component: {fileID: 1690974177}
   - component: {fileID: 1690974176}
   m_Layer: 10
-  m_Name: Square
+  m_Name: Axe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

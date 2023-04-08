@@ -61,10 +61,9 @@ public class InteractionSystem : MonoBehaviour
     Description: return true if object is detected near player and return 
     false if otherwise
     */
-
     bool DetectObject()
     {
-        
+        // Set obj to refrence of object detected 
         Collider2D obj = 
         Physics2D.OverlapCircle(detectionPoint.position,detectionRadius,detectionLayer);
 
@@ -81,6 +80,11 @@ public class InteractionSystem : MonoBehaviour
 
     }
 
+
+    /* 
+    Method Name: PickupItem()
+    Description: Append detected pick up item to list 
+    */
     public void PickUpItem(GameObject item)
     {
         pickedItems.Add(item);

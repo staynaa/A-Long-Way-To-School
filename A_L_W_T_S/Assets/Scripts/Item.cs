@@ -5,17 +5,27 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider2D))]
 public class Item : MonoBehaviour
 {
+    //Interaction types of items 
+    [SerializeField] private enum InteractionType {None,Pick_Up,Examine}
+
+    //Initialize InteractionType Variable 
+    [SerializeField] private InteractionType type;
   
-  [SerializeField] private enum InteractionType {None,Pick_Up,Examine}
-  [SerializeField] private InteractionType type;
-  
+    /* 
+    Method Name: Reset()
+    Description: Reset default value of required components
+    */
     private void Reset() 
     {
         GetComponent<Collider2D>().isTrigger = true;
         gameObject.layer = 10;
     }
 
-
+    /* 
+    Method Name: Interact()
+    Description: Handle interaction with items 
+    */
+    
     public void Interact()
     
     {
@@ -27,18 +37,20 @@ public class Item : MonoBehaviour
                 FindObjectOfType<InteractionSystem>().PickUpItem(gameObject);
                 
                 //Disable the object
-
                 gameObject.SetActive(false);
                
                 break;
             
+           
             case InteractionType.Examine:
+                
                 Debug.Log("E");
                 break;
             
+           
             default:
+               
                 break;
         }
-    }
-    
+    }   
 }
