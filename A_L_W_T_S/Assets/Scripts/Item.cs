@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(BoxCollider2D))]
 public class Item : MonoBehaviour
@@ -16,6 +17,10 @@ public class Item : MonoBehaviour
     //Description text of exmaine object
     [SerializeField] public string descriptionText;
 
+
+    [Header("Custom Event")]
+
+    [SerializeField] private UnityEvent customEvent;
     
 
   
@@ -57,5 +62,8 @@ public class Item : MonoBehaviour
             default: 
                 break;
         }
+
+        //Invoke (call) the custom event(s)
+        customEvent.Invoke();
     }   
 }
