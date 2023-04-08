@@ -22,7 +22,14 @@ public class Item : MonoBehaviour
         switch(type)
         {
             case InteractionType.Pick_Up:
-                Debug.Log("P");
+
+                //Add object to the pickedUpItems list
+                FindObjectOfType<InteractionSystem>().PickUpItem(gameObject);
+                
+                //Disable the object
+
+                gameObject.SetActive(false);
+               
                 break;
             
             case InteractionType.Examine:

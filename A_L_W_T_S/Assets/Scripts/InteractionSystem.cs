@@ -5,7 +5,7 @@ using UnityEngine;
 public class InteractionSystem : MonoBehaviour
 {
    
-
+    [Header("Detection Parameters")]
     [Tooltip("Reference to object being used as \"interactChecker\"")]
     //Detection point of object
     [SerializeField] private Transform detectionPoint;
@@ -18,6 +18,10 @@ public class InteractionSystem : MonoBehaviour
 
     //Cache Trigger Object
     [SerializeField] private GameObject detectObject;
+
+    [Header("Others")]
+    //List of picked items
+    [SerializeField] private List<GameObject> pickedItems = new List<GameObject>();
 
    
    
@@ -75,6 +79,11 @@ public class InteractionSystem : MonoBehaviour
         }
        
 
+    }
+
+    public void PickUpItem(GameObject item)
+    {
+        pickedItems.Add(item);
     }
 
 }
