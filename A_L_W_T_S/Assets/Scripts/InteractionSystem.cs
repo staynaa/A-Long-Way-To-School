@@ -16,6 +16,9 @@ public class InteractionSystem : MonoBehaviour
     //Detection layer of object
     [SerializeField] private LayerMask detectionLayer;
 
+    //Cache Trigger Object
+    [SerializeField] private GameObject detectObject;
+
    
    
    
@@ -32,7 +35,7 @@ public class InteractionSystem : MonoBehaviour
         {   
             if(InteractInput())
             {
-                Debug.Log("Interact");
+                detectObject.GetComponent<Item>().Interact();
             }
         }
     }
@@ -57,7 +60,20 @@ public class InteractionSystem : MonoBehaviour
 
     bool DetectObject()
     {
-        return Physics2D.OverlapCircle(detectionPoint.position,detectionRadius,detectionLayer);
+        
+        Collider2D obj = 
+        Physics2D.OverlapCircle(detectionPoint.position,detectionRadius,detectionLayer);
+
+        if(obj == null)
+        {
+            return false;
+        }
+        else
+        {
+            detectObject = obj.gameObject;
+            return true;
+        }
+       
 
     }
 
