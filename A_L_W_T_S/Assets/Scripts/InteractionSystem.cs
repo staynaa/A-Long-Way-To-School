@@ -102,7 +102,7 @@ public class InteractionSystem : MonoBehaviour
     */
     public void PickUpItem(GameObject item)
     {
-        pickedItems.Add(item);
+        FindObjectOfType<InventorySystem>().PickUp(item);
     }
 
 

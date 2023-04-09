@@ -46,7 +46,7 @@ public class Item : MonoBehaviour
             case InteractionType.Pick_Up:
 
                 //Add object to the pickedUpItems list
-                FindObjectOfType<InteractionSystem>().PickUpItem(gameObject);
+                FindObjectOfType<InventorySystem>().PickUp(gameObject);
                 
                 //Disable the object
                 gameObject.SetActive(false);

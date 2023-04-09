@@ -194,7 +194,15 @@ public class PlayerMovement : MonoBehaviour
         {
             can = false;
         }
+
+        if(FindObjectOfType<InventorySystem>().isOpen)
+        {
+            can = false;
+        }
+        
         return can;
+
+
     }
 
 
