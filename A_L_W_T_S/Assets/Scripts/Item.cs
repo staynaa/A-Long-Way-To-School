@@ -9,11 +9,17 @@ public class Item : MonoBehaviour
     //Interaction types of items 
     [SerializeField] private enum InteractionType {None,Pick_Up,Examine}
 
+    // item type of items
+    [SerializeField] public enum itemType {Static,Consumables}
+
+    [Header("Attributes")]
     //Initialize InteractionType Variable 
-    [SerializeField] private InteractionType type;
+    [SerializeField] private InteractionType interactType;
+
+    //Initialize itemType Variable 
+    [SerializeField] public itemType type;
 
     [Header("Exmaine")]
-
     //Description text of exmaine object
     [SerializeField] public string descriptionText;
 
@@ -21,6 +27,8 @@ public class Item : MonoBehaviour
     [Header("Custom Event")]
 
     [SerializeField] private UnityEvent customEvent;
+
+    [SerializeField] public UnityEvent consumeEvent;
     
 
   
@@ -41,7 +49,7 @@ public class Item : MonoBehaviour
     
     public void Interact() 
     {
-        switch(type)
+        switch(interactType)
         {
             case InteractionType.Pick_Up:
 

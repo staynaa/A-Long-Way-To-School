@@ -22,6 +22,10 @@ public class InventorySystem : MonoBehaviour
     [SerializeField] Image description_Image;
     [SerializeField] Text description_Title;
 
+    [SerializeField] Text description_Text;
+
+    
+
    
    
    private void Update() 
@@ -42,6 +46,7 @@ public class InventorySystem : MonoBehaviour
    {
         isOpen = !isOpen;
         ui_window.SetActive(isOpen);
+        Update_UI();
 
    }
    
@@ -85,6 +90,7 @@ public class InventorySystem : MonoBehaviour
         foreach(var i in items_Images)
         {
             i.gameObject.SetActive(false);
+            HideDescription();
         }
     }
 
@@ -99,12 +105,16 @@ public class InventorySystem : MonoBehaviour
         //Set the image
         description_Image.sprite = items_Images[id].sprite;
 
-        //Set the text
+        //Set the title
         description_Title.text = items[id].name;
+
+        //Show the description
+        description_Text.text = items[id].GetComponent<Item>().descriptionText;
 
         //Show The element
         description_Image.gameObject.SetActive(true);
         description_Title.gameObject.SetActive(true);
+         description_Text.gameObject.SetActive(true);
     }
 
 
@@ -117,7 +127,40 @@ public class InventorySystem : MonoBehaviour
     {
         description_Image.gameObject.SetActive(false);
         description_Title.gameObject.SetActive(false);
+        description_Text.gameObject.SetActive(false);
+        
 
+    }
+
+
+    /* 
+    Method Name: Consume()
+    Description: Consume items that are consumable 
+    */
+    public void Consume(int id)
+    {
+        if(items[id].GetComponent<Item>().type == Item.itemType.Consumables)
+        {
+            Debug.Log("CONSUMED");
+
+            //Invoke the consume custom event
+            items[id].GetComponent<Item>().consumeEvent.Invoke();
+
+            //Destory the item in very tiny
+            Destroy(items[id],0.1f);
+
+            //Clear the item from the list
+            items.RemoveAt(id);
+
+            //Update UI
+            Update_UI();
+
+            
+
+
+
+
+        }
     }
     
 }
