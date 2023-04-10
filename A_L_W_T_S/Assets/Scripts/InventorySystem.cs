@@ -5,9 +5,23 @@ using UnityEngine.UI;
 
 public class InventorySystem : MonoBehaviour
 {
+    [System.Serializable]
+    //Inventory Item Class
+    public class InventoryItem
+    {
+        public GameObject obj;
+        public int stack =1;
+
+        public InventoryItem(GameObject o,int s=1)
+        {
+            obj=o;
+            stack=s;
+        }
+    }
+    
     [Header("General Fields")]
     //List of items picked up
-    [SerializeField] private List<GameObject> items;
+    [SerializeField] private List<InventoryItem> items = new List<InventoryItem>();
 
     //flag indicates if the inventory is open or not 
     [SerializeField] public bool isOpen;
@@ -60,10 +74,45 @@ public class InventorySystem : MonoBehaviour
     */
     public void PickUp(GameObject item)
     {
-        items.Add(item);
+        //if Item is stackable
+        if(item.GetComponent<Item>().stackable)
+        {
+            //Check if we have an exsiting item in inventory
+            InventoryItem existingItem = items.Find(x=>x.obj.name==item.name);
+            //if yes, stack 
+            if(existingItem!=null)
+            {
+                existingItem.stack++;
+            }
+            //if no, add it as new item
+            else
+            {
+                InventoryItem i = new InventoryItem(item);
+                items.Add(i);
+            }
+
+        }
+        //if item is not stackable
+        else
+    
+        {
+            InventoryItem i = new InventoryItem(item);
+            items.Add(i);
+        }
         Update_UI();
     }
 
+    public bool CanPickup()
+    {
+        if(items.Count >=items_Images.Length)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
 
     /* 
     Method Name: Update_UI()
@@ -76,7 +125,7 @@ public class InventorySystem : MonoBehaviour
         //Show it in the respective slot in the "items_images"
         for (int i=0; i <items.Count;i++)
         {
-            items_Images[i].sprite = items[i].GetComponent<SpriteRenderer>().sprite;
+            items_Images[i].sprite = items[i].obj.GetComponent<SpriteRenderer>().sprite;
             items_Images[i].gameObject.SetActive(true);
         }
     }
@@ -106,10 +155,25 @@ public class InventorySystem : MonoBehaviour
         description_Image.sprite = items_Images[id].sprite;
 
         //Set the title
-        description_Title.text = items[id].name;
+        //If stack == 1 write only name
+
+         if(items[id].stack==1)
+         {
+            description_Title.text = items[id].obj.name;
+         }
+         //If stack >= 1 write  name + x stackvalue
+         else
+         {
+            description_Title.text = items[id].obj.name + " x" + items[id].stack;
+         }
+        
+
+        
+       
+        
 
         //Show the description
-        description_Text.text = items[id].GetComponent<Item>().descriptionText;
+        description_Text.text = items[id].obj.GetComponent<Item>().descriptionText;
 
         //Show The element
         description_Image.gameObject.SetActive(true);
@@ -139,18 +203,28 @@ public class InventorySystem : MonoBehaviour
     */
     public void Consume(int id)
     {
-        if(items[id].GetComponent<Item>().type == Item.itemType.Consumables)
+        if(items[id].obj.GetComponent<Item>().type == Item.itemType.Consumables)
         {
             Debug.Log("CONSUMED");
 
             //Invoke the consume custom event
-            items[id].GetComponent<Item>().consumeEvent.Invoke();
+            items[id].obj.GetComponent<Item>().consumeEvent.Invoke();
 
-            //Destory the item in very tiny
-            Destroy(items[id],0.1f);
 
-            //Clear the item from the list
-            items.RemoveAt(id);
+            //Reduce the stack number
+            items[id].stack--;
+
+            //if the stack is zero
+            if(items[id].stack==0)
+            {
+                //Destory the item in very tiny
+                Destroy(items[id].obj,0.1f);
+                
+                //Clear the item from the list
+                items.RemoveAt(id);
+            }
+
+            
 
             //Update UI
             Update_UI();

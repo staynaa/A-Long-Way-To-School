@@ -19,6 +19,8 @@ public class Item : MonoBehaviour
     //Initialize itemType Variable 
     [SerializeField] public itemType type;
 
+    [SerializeField] public bool stackable = false;
+
     [Header("Exmaine")]
     //Description text of exmaine object
     [SerializeField] public string descriptionText;
@@ -52,6 +54,11 @@ public class Item : MonoBehaviour
         switch(interactType)
         {
             case InteractionType.Pick_Up:
+
+                if(!FindObjectOfType<InventorySystem>().CanPickup())
+                {
+                    return;
+                }
 
                 //Add object to the pickedUpItems list
                 FindObjectOfType<InventorySystem>().PickUp(gameObject);
