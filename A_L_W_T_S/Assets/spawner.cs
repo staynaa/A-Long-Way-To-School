@@ -32,7 +32,7 @@ public class spawner : MonoBehaviour
         int i = isRand ? Random.Range(0,objSpawned.Count) : 0; //get random index to represent the element that'll spawn
 
         if(objSpawned.Count > 0){
-            Instantiate(objSpawned[i],transform.position,transform.rotation);
+            Instantiate(objSpawned[i],transform.position,objSpawned[i].transform.rotation);
         }
     }
 }
