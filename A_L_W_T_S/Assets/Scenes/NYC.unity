@@ -3470,6 +3470,12 @@ MonoBehaviour:
   runSpeedModifer: 2
   crouchSpeedModifier: 0.5
   verticalPower: 8
+  maxStamina: 100
+  currentStamina: 0
+  staminaUseMultiplier: 20
+  timeBeforeStaminaRegenStarts: 5
+  staminaValueIncrement: 2
+  staminaTimeIncrement: 0.1
 --- !u!61 &1484421527
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
     //Initialize Animator object 
     private Animator animator;
     
-    #endregion
+     #endregion
 
 
     #region Collider Reference Variables
@@ -71,6 +71,38 @@ public class PlayerMovement : MonoBehaviour
     [Tooltip("Vertical power of player")]
     // Vertical Movement Power Of Player
     [SerializeField] private float verticalPower = 6;
+
+    [Header("Stamina Variables")]
+
+    
+    [Tooltip("Maximum Stamina")]
+    //Maximum stamina value
+    [SerializeField] private float maxStamina = 100;
+
+    [Tooltip("Current Stamina")]
+    //Player current stamina
+    [SerializeField] private float currentStamina;
+
+
+    [Tooltip("Stamina Use Multiplier")]
+    //Value at which player stamina depletes at when in use  
+    [SerializeField] private float staminaUseMultiplier = 5;
+
+    [Tooltip("Stamina Regen Start Timer")]
+    //Time before stamina regeneration starts
+    [SerializeField] private float timeBeforeStaminaRegenStarts = 5;
+
+
+    [Tooltip("Stamina Regen Value")]
+    //Value at which player player stamina regenerate at when not in use
+    [SerializeField] private float staminaValueIncrement = 2;
+
+
+    [Tooltip("Stamina Regen per frame delay timer")]
+    //Time delay between each frame at which stamina regenerate at
+    [SerializeField] private float staminaTimeIncrement = 0.1f;
+    
+    [SerializeField] private Coroutine regeneratingStamina;
     
     #endregion
 
@@ -103,6 +135,12 @@ public class PlayerMovement : MonoBehaviour
     //Determine if Player is crouched button is pressed/held
     private bool crouchedPressed = false;
 
+    //Determine if player is using stamina 
+    private bool useStamina = true;
+
+    //Determine if player is able to run
+    private bool canRun = true;
+
     #endregion
 
 
@@ -114,34 +152,45 @@ public class PlayerMovement : MonoBehaviour
 
         //Reference to player's Animator
         animator = GetComponent<Animator>();
+
+        //Initialize player starting stamina
+        currentStamina = maxStamina;
     }
 
-    
+
     // Start is called before the first frame update
     void Start()
     {
 
     }
 
+
     // Update is called once per frame
      void Update()
     {
-        //Locks Players Movement 
+        //Locks players movement 
         if (CanMove() == false)
         {
             return;
         }
+
         //Set the yVelocity in the animator 
         animator.SetFloat("yVelocity",rb.velocity.y);
  
         // Store value given by the key presses of button associated horinzontal movement
         horizontalMovement = Input.GetAxisRaw("Horizontal");
 
+
+        if(useStamina)
+        {
+            HandleStamina();
+        }
+
         
         // If left-shift is clicked and held down enable isRunning 
-        if(Input.GetKeyDown(KeyCode.LeftShift))
+        if(Input.GetKeyDown(KeyCode.LeftShift) && canRun)
         {
-            isRunning = true;
+            isRunning = true; 
         }
 
         // If left-shift is released disable isRunning 
@@ -150,15 +199,11 @@ public class PlayerMovement : MonoBehaviour
             isRunning = false;
         }
 
-
         //If jump button is pressed/helded jump is enable
         if (Input.GetButtonDown("Jump"))
         {
             Jump();
         }
-
-        
-
 
         //If Crouch button is pressed/helded Crouch is enable
         if (Input.GetButtonDown("Crouch"))
@@ -180,8 +225,6 @@ public class PlayerMovement : MonoBehaviour
         GroundCheck();
         move(horizontalMovement,crouchedPressed);
     }
-
-
     
     /* 
     Method Name: CanMove() 
@@ -201,10 +244,7 @@ public class PlayerMovement : MonoBehaviour
         }
         
         return can;
-
-
     }
-
 
 
     /* 
@@ -233,6 +273,7 @@ public class PlayerMovement : MonoBehaviour
 
             }
         }
+        
         else
         {
             if(wasGrounded)
@@ -246,6 +287,8 @@ public class PlayerMovement : MonoBehaviour
         animator.SetBool("Jump",!isGrounded);
      } 
 
+    
+    
     // Timer for coyote jump to be enable
      IEnumerator CoyoteJumpDelay()
      {
@@ -280,8 +323,6 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-
-
     /* 
     Method Name: move()
     Parameter: 
@@ -293,9 +334,6 @@ public class PlayerMovement : MonoBehaviour
     {
 
         #region Crouch
-
-
-
 
         //If we are crouching and disable crouching
         //check overhead for collision with ground items
@@ -325,7 +363,7 @@ public class PlayerMovement : MonoBehaviour
         float xVal = dir * speed * 100 * Time.fixedDeltaTime;
 
         // If player is running multiply with running modifier
-        if(isRunning)
+        if(isRunning && canRun)
         {
             xVal *= runSpeedModifer;
         }
@@ -357,7 +395,6 @@ public class PlayerMovement : MonoBehaviour
             flip();
         }
 
-
         // 0 idle, 4 walking , 8 running
         //Set the flot xVelocity accroding to the x value of the RigidBody2D Velocity
         animator.SetFloat("xVelocity", Mathf.Abs(rb.velocity.x));
@@ -376,6 +413,68 @@ public class PlayerMovement : MonoBehaviour
     {
         isFacingRight = !isFacingRight;
         transform.Rotate(0,180f,0f);
+    }
+
+
+    /* 
+    Method Name: HandleStamina()
+    Description: Handle Stamina 
+    */  
+    private void HandleStamina()
+    {
+        //Determine if player is moving while running 
+        if(isRunning && horizontalMovement != 0)
+        {
+            
+            //Determine if player is regenerating stamina
+            if(regeneratingStamina != null)
+            {
+                StopCoroutine(regeneratingStamina);
+                regeneratingStamina = null;
+            }
+            //Depletes current stamina 
+            currentStamina -= staminaUseMultiplier * Time.deltaTime;
+
+            if(currentStamina < 0)
+            {
+                currentStamina = 0;
+            }
+            if(currentStamina <= 0)
+            {
+                canRun = false;
+            }
+            
+        }
+        //Determine if player is not running and stamina has been used
+        if(!isRunning && currentStamina < maxStamina && regeneratingStamina == null)
+            {
+                //Start stamina regeneration process
+                regeneratingStamina = StartCoroutine(RegenerateStamina());
+            }
+    }
+
+
+    // Handle the stamina regeneration of player
+    private IEnumerator RegenerateStamina()
+    {
+        yield return new WaitForSeconds(timeBeforeStaminaRegenStarts);
+        WaitForSeconds timeToWait = new WaitForSeconds(staminaTimeIncrement);
+
+        while(currentStamina < maxStamina)
+        {
+            if(currentStamina > 0)
+            {
+                canRun = true;
+            }
+            currentStamina += staminaValueIncrement * Time.deltaTime;
+
+            if(currentStamina > maxStamina)
+            {
+                currentStamina = maxStamina;
+            }
+            yield return timeToWait;
+        }
+        regeneratingStamina = null;
     }
 }  
 
