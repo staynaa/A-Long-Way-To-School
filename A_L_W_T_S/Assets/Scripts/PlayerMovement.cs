@@ -70,7 +70,39 @@ public class PlayerMovement : MonoBehaviour
 
     [Tooltip("Vertical power of player")]
     // Vertical Movement Power Of Player
-    [SerializeField] private float verticalPower = 75;
+    [SerializeField] private float verticalPower = 6;
+
+    [Header("Stamina Variables")]
+
+    
+    [Tooltip("Maximum Stamina")]
+    //Maximum stamina value
+    [SerializeField] private float maxStamina = 100;
+
+    [Tooltip("Current Stamina")]
+    //Player current stamina
+    [SerializeField] private float currentStamina;
+
+
+    [Tooltip("Stamina Use Multiplier")]
+    //Value at which player stamina depletes at when in use  
+    [SerializeField] private float staminaUseMultiplier = 5;
+
+    [Tooltip("Stamina Regen Start Timer")]
+    //Time before stamina regeneration starts
+    [SerializeField] private float timeBeforeStaminaRegenStarts = 5;
+
+
+    [Tooltip("Stamina Regen Value")]
+    //Value at which player player stamina regenerate at when not in use
+    [SerializeField] private float staminaValueIncrement = 2;
+
+
+    [Tooltip("Stamina Regen per frame delay timer")]
+    //Time delay between each frame at which stamina regenerate at
+    [SerializeField] private float staminaTimeIncrement = 0.1f;
+    
+    [SerializeField] private Coroutine regeneratingStamina;
     
     #endregion
 
