@@ -103,6 +103,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float staminaTimeIncrement = 0.1f;
     
     [SerializeField] private Coroutine regeneratingStamina;
+
+    public Stamina staminaBar;
     
     #endregion
 
@@ -439,6 +441,9 @@ public class PlayerMovement : MonoBehaviour
             {
                 currentStamina = 0;
             }
+
+            staminaBar.SetStamina(currentStamina);
+            
             if(currentStamina <= 0)
             {
                 canRun = false;
@@ -472,6 +477,9 @@ public class PlayerMovement : MonoBehaviour
             {
                 currentStamina = maxStamina;
             }
+
+            staminaBar.SetStamina(currentStamina);
+
             yield return timeToWait;
         }
         regeneratingStamina = null;
