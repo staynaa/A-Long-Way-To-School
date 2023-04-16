@@ -70,7 +70,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Tooltip("Vertical power of player")]
     // Vertical Movement Power Of Player
-    [SerializeField] private float verticalPower = 6;
+    [SerializeField] private float verticalPower = 4;
 
     [Header("Stamina Variables")]
 
