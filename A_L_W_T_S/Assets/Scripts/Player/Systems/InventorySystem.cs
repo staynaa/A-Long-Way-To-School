@@ -35,14 +35,14 @@ public class InventorySystem : MonoBehaviour
     [SerializeField] GameObject ui_description_window;
     [SerializeField] Image description_Image;
     [SerializeField] Text description_Title;
-
     [SerializeField] Text description_Text;
 
-    
+    //consume sound effect
+    [SerializeField] AudioSource consumeSoundEffect;
 
-   
-   
-   private void Update() 
+
+
+    private void Update() 
    {
         if(Input.GetKeyDown(KeyCode.I))
         {
@@ -214,8 +214,11 @@ public class InventorySystem : MonoBehaviour
             //Reduce the stack number
             items[id].stack--;
 
+            //consume sound effect
+            consumeSoundEffect.Play();
+
             //if the stack is zero
-            if(items[id].stack==0)
+            if (items[id].stack==0)
             {
                 //Destory the item in very tiny
                 Destroy(items[id].obj,0.1f);

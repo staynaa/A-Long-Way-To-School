@@ -145,6 +145,14 @@ public class PlayerMovement : MonoBehaviour
 
     #endregion
 
+     #region
+    //Jump Sound
+    [SerializeField] private AudioSource jumpSoundEffect;
+    //Running Sound
+    [SerializeField] private AudioSource runSoundEffect;
+    //walking Sound
+    [SerializeField] private AudioSource walkSoundEffect;
+    #endregion
 
     // Awake is called before the start of application
     void Awake()
@@ -192,14 +200,18 @@ public class PlayerMovement : MonoBehaviour
         // If left-shift is clicked and held down enable isRunning 
         if(Input.GetKeyDown(KeyCode.LeftShift) && canRun)
         {
-            isRunning = true; 
+            isRunning = true;
+            runSoundEffect.Play();
         }
 
         // If left-shift is released disable isRunning 
         if(Input.GetKeyUp(KeyCode.LeftShift))
         {
             isRunning = false;
+            runSoundEffect.Stop();
         }
+
+     
 
         //If jump button is pressed/helded jump is enable
         if (Input.GetButtonDown("Jump"))
@@ -213,6 +225,7 @@ public class PlayerMovement : MonoBehaviour
             crouchedPressed = true;
         }
 
+        //If Crouch button is released Crouch is disable
         //If Crouch button is released Crouch is disable
         else if (Input.GetButtonUp("Crouch"))
         {
@@ -313,6 +326,9 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.velocity = Vector2.up * verticalPower; 
             animator.SetBool("Jump",true);
+            //Plays Jump sound effect 
+            //Placed here because if not player will be able to play sound effect while jumping in midair
+            jumpSoundEffect.Play();
         }
         else
         {

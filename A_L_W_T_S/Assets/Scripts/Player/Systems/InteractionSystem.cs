@@ -37,9 +37,10 @@ public class InteractionSystem : MonoBehaviour
     //List of picked items
     [SerializeField] private List<GameObject> pickedItems = new List<GameObject>();
 
-   
-   
-   
+    //pickup items Sound Effect
+    [SerializeField] private AudioSource pickUpSoundEffect;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -53,6 +54,7 @@ public class InteractionSystem : MonoBehaviour
         {   
             if(InteractInput())
             {
+                pickUpSoundEffect.Play();
                 detectObject.GetComponent<Item>().Interact();
             }
         }
