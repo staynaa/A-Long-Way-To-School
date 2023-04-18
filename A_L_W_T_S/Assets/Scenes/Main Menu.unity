@@ -2215,7 +2215,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'KEYS:'
+  m_text: "KEYS:  \n(Left),(Right) or (A),(D) - Horizontal Movement\n\nHold + left-(Shift)
+    +  ((Left) or (A)) or ((Right) or (D)) - Run \n\nHold + ((Down) or (S)) -Crouch\n\n(
+    Space Bar ) - Jump\n\n( E ) - Interact\n\n( I ) - Inventory\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 26547e76a656e4e7cb62b2d721de50d5, type: 2}
   m_sharedMaterial: {fileID: -1162773884000859559, guid: 26547e76a656e4e7cb62b2d721de50d5, type: 2}
@@ -2242,8 +2244,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
