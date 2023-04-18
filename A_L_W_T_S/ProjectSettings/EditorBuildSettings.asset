@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/USA-Level.unity
     guid: 32c17457ed32f4925a6f986bdff7541b
+  - enabled: 1
+    path: Assets/Scenes/youLost.unity
+    guid: 79c5afc10c8fa43fcb3ec65138708e59
   m_configObjects: {}
