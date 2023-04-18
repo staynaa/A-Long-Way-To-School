@@ -6637,9 +6637,9 @@ MonoBehaviour:
   verticalPower: 4
   maxStamina: 100
   currentStamina: 0
-  staminaUseMultiplier: 5
+  staminaUseMultiplier: 40
   timeBeforeStaminaRegenStarts: 5
-  staminaValueIncrement: 2
+  staminaValueIncrement: 1000
   staminaTimeIncrement: 0.1
   staminaBar: {fileID: 1119585317}
   jumpSoundEffect: {fileID: 1041541247}

@@ -86,7 +86,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Tooltip("Stamina Use Multiplier")]
     //Value at which player stamina depletes at when in use  
-    [SerializeField] private float staminaUseMultiplier = 30;
+    [SerializeField] private float staminaUseMultiplier = 40;
 
     [Tooltip("Stamina Regen Start Timer")]
     //Time before stamina regeneration starts
