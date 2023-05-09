@@ -29,9 +29,9 @@ public class WinMessage : MonoBehaviour
        
     }
 
-    public void LoadMainMenu()
+    public void LoadNextScene()
     {
-        SceneManager.LoadScene("Main Menu");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
         Time.timeScale = 1f;
         GameIsPaused = false;
     }

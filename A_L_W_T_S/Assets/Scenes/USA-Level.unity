@@ -7496,7 +7496,7 @@ GameObject:
   - component: {fileID: 1118771840}
   - component: {fileID: 1118771839}
   m_Layer: 0
-  m_Name: Main Menu Button
+  m_Name: Next Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7570,7 +7570,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 958024414}
         m_TargetAssemblyTypeName: WinMessage, Assembly-CSharp
-        m_MethodName: LoadMainMenu
+        m_MethodName: LoadNextScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8866,7 +8866,7 @@ GameObject:
   - component: {fileID: 1263657191}
   - component: {fileID: 1263657190}
   m_Layer: 0
-  m_Name: Main MenuButton Shadow
+  m_Name: Next Button Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8983,7 +8983,7 @@ GameObject:
   - component: {fileID: 1299834133}
   - component: {fileID: 1299834132}
   m_Layer: 0
-  m_Name: Main Menu Button Outline
+  m_Name: Next Button Outline
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14300,7 +14300,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: MAIN MENU
+  m_text: NEXT
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 26547e76a656e4e7cb62b2d721de50d5, type: 2}
   m_sharedMaterial: {fileID: -1162773884000859559, guid: 26547e76a656e4e7cb62b2d721de50d5, type: 2}
