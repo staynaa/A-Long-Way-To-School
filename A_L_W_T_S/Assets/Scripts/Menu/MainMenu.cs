@@ -22,6 +22,16 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
     }
 
+    public void Menu()
+    {
+        SceneManager.LoadScene("Main Menu");
+    }
+
+    public void Play()
+    {
+        SceneManager.LoadScene(1);
+    }
+
     //Start is called before the first frame update
     void Start()
     {
