@@ -6,6 +6,7 @@ TagManager:
   tags:
   - car
   - notif
+  - Book
   layers:
   - Default
   - TransparentFX

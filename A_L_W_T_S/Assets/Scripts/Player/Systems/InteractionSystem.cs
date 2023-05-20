@@ -54,7 +54,7 @@ public class InteractionSystem : MonoBehaviour
         {   
             if(InteractInput())
             {
-                pickUpSoundEffect.Play();
+               // pickUpSoundEffect.Play();
                 detectObject.GetComponent<Item>().Interact();
             }
         }
