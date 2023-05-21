@@ -8,7 +8,8 @@ public class cartMove : MonoBehaviour
     // [SerializeField] Rigidbody2D rigid;
     // [SerializeField] int speed;
     [SerializeField] List<GameObject> btn=new List<GameObject>();
-    [SerializeField] GameObject imgObj;
+    [SerializeField] GameObject imgObj,statusBox;
+    [SerializeField] GameObject questionText;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +33,8 @@ public class cartMove : MonoBehaviour
         if(other.tag == "notif"){ 
             Time.timeScale = 0;
             imgObj.SetActive(false);
+            statusBox.SetActive(false);
+            questionText.SetActive(false);
             btn[0].SetActive(false);
             btn[1].SetActive(false);
             btn[2].SetActive(false);

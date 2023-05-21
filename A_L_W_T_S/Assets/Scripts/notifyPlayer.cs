@@ -17,8 +17,8 @@ public class notifyPlayer : MonoBehaviour
     {
         
     }
-    void OnTriggerExit2D(Collider2D other) {
-        if(other.tag=="notif")
-        notification.SetActive(true); //once player is back in bounds the text will disappear 
-    }
+    // void OnTriggerExit2D(Collider2D other) {
+    //     if(other.tag=="notif")
+    //     notification.SetActive(true); //once player is back in bounds the text will disappear 
+    // }
 }

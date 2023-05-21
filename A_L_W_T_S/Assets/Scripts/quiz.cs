@@ -6,12 +6,12 @@ using TMPro;
 
 public class quiz : MonoBehaviour
 {
-    [SerializeField] Image flagImg;
+    [SerializeField] Image flagImg, statusBox;
     [SerializeField] string correctText,opt1,opt2,opt3;
     public List<Sprite> flags = new List<Sprite>();
     private List<int> alreadyAsked=new List<int>();
     [SerializeField] List<TextMeshProUGUI> choicesBtn=new List<TextMeshProUGUI>();
-    [SerializeField] TextMeshProUGUI scoreText;
+    [SerializeField] TextMeshProUGUI scoreText, statusText;
     public int score=0, quesNum=1,streakScore=1;
     [SerializeField] GameObject curFlag;
     void Start()
@@ -69,11 +69,15 @@ public class quiz : MonoBehaviour
         if(correctText.Equals(ans)){
             score+=10*streakScore;
             Debug.Log("CORRECT");
+            statusText.SetText("Correct!");
+            statusBox.GetComponent<Image>().color = Color.green;
             streakScore+=2; //gain streak score
         }
         else{
             score-=20;
             Debug.Log("INCORRECT");
+            statusText.SetText("Incorrect!");
+            statusBox.GetComponent<Image>().color = Color.red;
             streakScore=1; //lose streak score
         }
         scoreText.SetText("Score: "+score);
