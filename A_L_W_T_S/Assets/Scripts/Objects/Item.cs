@@ -82,7 +82,7 @@ public class Item : MonoBehaviour
                 //Disable the object
                 gameObject.SetActive(false);
 
-                score++;
+                score=score+10;
                 PersistentData.Instance.SetScore(score);
                
                 break;

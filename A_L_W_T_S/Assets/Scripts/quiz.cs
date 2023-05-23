@@ -81,6 +81,7 @@ public class quiz : MonoBehaviour
             streakScore=1; //lose streak score
         }
         scoreText.SetText("Score: "+score);
+        PersistentData.Instance.SetScore(score);
         quesNum++;
 
         nextFlag();
