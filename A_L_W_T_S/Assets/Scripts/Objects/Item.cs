@@ -39,14 +39,14 @@ public class Item : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        scoreTxt.text = "Score: " + score;
+        scoreTxt.text = "Score:" + score;
         
     }
 
     // Update is called once per frame
     void Update()
     {
-        scoreTxt.text = "Score: " + score;
+        scoreTxt.text = "Score:" + score;
 
     }
   
