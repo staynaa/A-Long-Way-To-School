@@ -14,6 +14,8 @@ public class quiz : MonoBehaviour
     [SerializeField] TextMeshProUGUI scoreText, statusText;
     public int score=0, quesNum=1,streakScore=1;
     [SerializeField] GameObject curFlag;
+    [SerializeField] private AudioSource winSoundEffect;
+    [SerializeField] private AudioSource loseSoundEffect;
     void Start()
     {
         flagImg= curFlag.GetComponent<Image>(); //get image component
@@ -72,6 +74,7 @@ public class quiz : MonoBehaviour
             statusText.SetText("Correct!");
             statusBox.GetComponent<Image>().color = Color.green;
             streakScore+=2; //gain streak score
+            winSoundEffect.Play();
         }
         else{
             score-=20;
@@ -79,6 +82,7 @@ public class quiz : MonoBehaviour
             statusText.SetText("Incorrect!");
             statusBox.GetComponent<Image>().color = Color.red;
             streakScore=1; //lose streak score
+            loseSoundEffect.Play();
         }
         scoreText.SetText("Score: "+score);
         quesNum++;
