@@ -11,6 +11,9 @@ public class check : MonoBehaviour
     private string firstBtn, secondBtn;
     private GameObject firstClick, secondClick;
     [SerializeField] GameObject panelObj;
+    [SerializeField] AudioSource winSoundEffect;
+    [SerializeField] AudioSource loseSoundEffect;
+
     [SerializeField] TextMeshProUGUI scoretext, status;
     public GameObject UiObject;
 
@@ -42,6 +45,7 @@ public class check : MonoBehaviour
                 scoretext.SetText("Score: "+score);
                 // status.color=new Color(0f,1f,0f,0f);
                 status.SetText("Correct");
+                winSoundEffect.Play();
                 // firstClick.SetActive(false);
                 // secondClick.SetActive(false);
                 firstClick.GetComponent<TMP_Text>().color=new Color(1f,1f,1f,1f);
@@ -63,6 +67,7 @@ public class check : MonoBehaviour
                 scoretext.SetText("Score: "+ score);
                 // status.color=new Color(1f,0f,0f,0f);
                 status.SetText("Incorrect");
+                loseSoundEffect.Play();
                 Debug.Log("Not A Match");
                 firstClick.GetComponent<TMP_Text>().color= new Color(0f,0f,0f,1f);
                 secondClick.GetComponent<TMP_Text>().color= new Color(0f,0f,0f,1f);
