@@ -41,7 +41,7 @@ public class Item : MonoBehaviour
     void Start()
     {
         scoreOverall= PersistentData.Instance.GetScore();
-        scoreTxt.text = "Score:" + scoreOverall;
+        scoreTxt.text = "Score:" + score;
     }
 
     // Update is called once per frame

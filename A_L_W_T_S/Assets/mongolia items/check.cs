@@ -21,6 +21,7 @@ public class check : MonoBehaviour
     {
         UiObject.SetActive(false);
         scoreOverall= PersistentData.Instance.GetScore();
+        scoretext.SetText("Score:"+ scoreOverall);
     }
 
     void Update()
@@ -75,7 +76,7 @@ public class check : MonoBehaviour
                 firstClick=null;
                 secondClick=null;
             }
-            scoretext.SetText("Score:"+ scoreOverall);
+            scoretext.SetText("Score:"+ (score+scoreOverall));
             updateScore();
         }
         // btn.SetActive(false);

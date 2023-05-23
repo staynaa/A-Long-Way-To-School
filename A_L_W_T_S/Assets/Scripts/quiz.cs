@@ -20,6 +20,7 @@ public class quiz : MonoBehaviour
     {
         flagImg= curFlag.GetComponent<Image>(); //get image component
         scoreOverall= PersistentData.Instance.GetScore();
+        scoreText.SetText("Score: "+ scoreOverall);
         nextFlag();
     }
     // Update is called once per frame
@@ -86,7 +87,7 @@ public class quiz : MonoBehaviour
             loseSoundEffect.Play();
         }
         // scoreText.SetText("Score: "+score);
-        scoreText.SetText("Score: "+ scoreOverall);
+        scoreText.SetText("Score: "+ (score+scoreOverall));
         updateScore();
         quesNum++;
 
