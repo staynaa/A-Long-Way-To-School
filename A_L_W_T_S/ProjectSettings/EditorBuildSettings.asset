@@ -12,11 +12,23 @@ EditorBuildSettings:
     path: Assets/Scenes/Main Menu.unity
     guid: 22e076aefd00344939b7948c8fdcdadb
   - enabled: 1
+    path: Assets/Scenes/NYC-intro.unity
+    guid: 40028261586c14218a78187648299283
+  - enabled: 1
     path: Assets/Scenes/NYC-Level.unity
     guid: 32c17457ed32f4925a6f986bdff7541b
   - enabled: 1
+    path: Assets/Scenes/NYC-ending.unity
+    guid: 9e575eef6972341a1867f487bb9ac007
+  - enabled: 1
+    path: Assets/Scenes/NEPAL-intro.unity
+    guid: 4a175ef2446fe4582a9e98443f592946
+  - enabled: 1
     path: Assets/Scenes/Nepal-Level.unity
     guid: d48f55ca71aa84d539b21528246b884c
+  - enabled: 1
+    path: Assets/Scenes/NEPAL-ending.unity
+    guid: 0a86f4425212043e6a0fc09da6f2b2d2
   - enabled: 1
     path: Assets/Scenes/HighScores-Screen.unity
     guid: e7bb6768b28914233aca0317d64a3797

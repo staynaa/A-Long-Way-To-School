@@ -11,4 +11,9 @@ public class buttons : MonoBehaviour
     public void goToScene(string scene){
         SceneManager.LoadScene(scene);
     }
+
+    public void LoadNextScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
+    }
 }
