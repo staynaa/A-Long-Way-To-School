@@ -7,6 +7,9 @@ TagManager:
   - car
   - notif
   - Book
+  - Penny
+  - Nickel
+  - Quarter
   layers:
   - Default
   - TransparentFX
@@ -19,7 +22,7 @@ TagManager:
   - 
   - 
   - item
-  - 
+  - item2
   - 
   - 
   - 
