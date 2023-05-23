@@ -9,6 +9,7 @@ public class NepalInstructions : MonoBehaviour
     public GameObject InstructionScreen;
     public GameObject ContinueButton;
     public GameObject quiz;
+    public GameObject pauseButton;
  
     public static bool GameIsPaused = false;
  
@@ -17,6 +18,7 @@ public class NepalInstructions : MonoBehaviour
     {
         Time.timeScale = 0f;
         quiz.SetActive(false);
+        pauseButton.SetActive(false);
     }
    
     // Update is called once per frame
@@ -33,6 +35,8 @@ public class NepalInstructions : MonoBehaviour
 
         ContinueButton.SetActive(true);
         quiz.SetActive(false);
+        pauseButton.SetActive(false);
+
     }
  
     public void ContinueGame()
@@ -43,5 +47,6 @@ public class NepalInstructions : MonoBehaviour
 
         ContinueButton.SetActive(false);
         quiz.SetActive(true);
+        pauseButton.SetActive(true);
     }
 }

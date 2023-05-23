@@ -9,6 +9,8 @@ public class NYCInstructions : MonoBehaviour
     public GameObject InstructionScreen;
     public GameObject ContinueButton;
     public GameObject distanceTracker;
+    public GameObject pauseButton;
+
  
     public static bool GameIsPaused = false;
  
@@ -17,6 +19,8 @@ public class NYCInstructions : MonoBehaviour
     {
         Time.timeScale = 0f;
         distanceTracker.SetActive(false);
+        pauseButton.SetActive(false);
+
     }
    
     // Update is called once per frame
@@ -33,6 +37,7 @@ public class NYCInstructions : MonoBehaviour
 
         ContinueButton.SetActive(true);
         distanceTracker.SetActive(false);
+        pauseButton.SetActive(false);
     }
  
     public void ContinueGame()
@@ -43,5 +48,6 @@ public class NYCInstructions : MonoBehaviour
 
         ContinueButton.SetActive(false);
         distanceTracker.SetActive(true);
+        pauseButton.SetActive(true);
     }
 }

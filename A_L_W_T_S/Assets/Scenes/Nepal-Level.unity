@@ -768,7 +768,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 145315151}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 17.328583, y: -14.9, z: -10}
+  m_LocalPosition: {x: 18.685709, y: -14.9, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -971,7 +971,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 373519180}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 17.328583, y: -14.9, z: -10}
+  m_LocalPosition: {x: 18.685709, y: -14.9, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2178,6 +2178,7 @@ MonoBehaviour:
   InstructionScreen: {fileID: 667325839}
   ContinueButton: {fileID: 1654463666}
   quiz: {fileID: 715212452}
+  pauseButton: {fileID: 892261468}
 --- !u!1 &684269618
 GameObject:
   m_ObjectHideFlags: 0
