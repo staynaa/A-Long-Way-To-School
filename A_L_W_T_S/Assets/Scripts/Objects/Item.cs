@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using TMPro;
 
 [RequireComponent(typeof(BoxCollider2D))]
 public class Item : MonoBehaviour
@@ -31,8 +32,23 @@ public class Item : MonoBehaviour
     [SerializeField] private UnityEvent customEvent;
 
     [SerializeField] public UnityEvent consumeEvent;
-    
 
+    [SerializeField] public static int score = 0;
+    [SerializeField] public TextMeshProUGUI scoreTxt;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        scoreTxt.text = "Score: " + score;
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        scoreTxt.text = "Score: " + score;
+
+    }
   
     /* 
     Method Name: Reset()
@@ -65,6 +81,9 @@ public class Item : MonoBehaviour
                 
                 //Disable the object
                 gameObject.SetActive(false);
+
+                score++;
+                PersistentData.Instance.SetScore(score);
                
                 break;
 
