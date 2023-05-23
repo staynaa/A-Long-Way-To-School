@@ -60,6 +60,11 @@ public class Item : MonoBehaviour
         gameObject.layer = 10;
     }
 
+    public static void ResetScore()
+    {
+        score = 0;
+    }
+
     /* 
     Method Name: Interact()
     Description: Handle interaction with items 
@@ -100,4 +105,5 @@ public class Item : MonoBehaviour
         //Invoke (call) the custom event(s)
         customEvent.Invoke();
     }   
+
 }

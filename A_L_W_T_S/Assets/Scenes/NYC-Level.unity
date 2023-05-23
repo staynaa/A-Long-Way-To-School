@@ -4699,7 +4699,7 @@ MonoBehaviour:
   InstructionScreen: {fileID: 751056874}
   ContinueButton: {fileID: 2142055818}
   distanceTracker: {fileID: 453032907}
-  pauseButton: {fileID: 0}
+  pauseButton: {fileID: 1959130334}
 --- !u!1 &752677735
 GameObject:
   m_ObjectHideFlags: 0

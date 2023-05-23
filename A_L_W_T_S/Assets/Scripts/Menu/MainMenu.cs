@@ -12,7 +12,9 @@ public class MainMenu : MonoBehaviour
     {
         string s = playerName.text;
         PersistentData.Instance.SetName(s);
+        Item.ResetScore();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
+        
     }
 
     //Quit Button: Closes the application
