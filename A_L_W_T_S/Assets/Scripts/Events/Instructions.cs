@@ -8,6 +8,7 @@ public class Instructions : MonoBehaviour
  
     public GameObject InstructionScreen;
     public GameObject ContinueButton;
+    public GameObject distanceTracker;
  
     public static bool GameIsPaused = false;
  
@@ -15,6 +16,7 @@ public class Instructions : MonoBehaviour
     void Start()
     {
         Time.timeScale = 0f;
+        distanceTracker.SetActive(false);
     }
    
     // Update is called once per frame
@@ -30,6 +32,7 @@ public class Instructions : MonoBehaviour
         GameIsPaused = true; 
 
         ContinueButton.SetActive(true);
+        distanceTracker.SetActive(false);
     }
  
     public void ContinueGame()
@@ -38,6 +41,7 @@ public class Instructions : MonoBehaviour
         Time.timeScale = 1f;
         GameIsPaused = false;
 
-        ContinueButton.SetActive(true);
+        ContinueButton.SetActive(false);
+        distanceTracker.SetActive(true);
     }
 }
