@@ -30,6 +30,15 @@ EditorBuildSettings:
     path: Assets/Scenes/NEPAL-ending.unity
     guid: 0a86f4425212043e6a0fc09da6f2b2d2
   - enabled: 1
+    path: Assets/Scenes/MONGOLIA-intro.unity
+    guid: c73bc6a7a7a9341979edad349d6adb85
+  - enabled: 1
+    path: Assets/Scenes/Mongolia-Level.unity
+    guid: fcbbb966e523e42f1bc5fc4a156f4491
+  - enabled: 1
+    path: Assets/Scenes/MONGOLIA-ending.unity
+    guid: 7bb0186bbdc5e452592152bf047d39ec
+  - enabled: 1
     path: Assets/Scenes/HighScores-Screen.unity
     guid: e7bb6768b28914233aca0317d64a3797
   - enabled: 1

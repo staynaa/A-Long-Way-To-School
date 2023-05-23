@@ -12,6 +12,12 @@ public class check : MonoBehaviour
     private GameObject firstClick, secondClick;
     [SerializeField] GameObject panelObj;
     [SerializeField] TextMeshProUGUI scoretext, status;
+    public GameObject UiObject;
+
+    void Start()
+    {
+        UiObject.SetActive(false);
+    }
 
     void Update()
     {
@@ -45,6 +51,7 @@ public class check : MonoBehaviour
                 firstClick=null;
                 secondClick=null;
                 if(checking==8){
+                    UiObject.SetActive(true);
                     panelObj.SetActive(false);
                   Time.timeScale=0; //game done  
 
