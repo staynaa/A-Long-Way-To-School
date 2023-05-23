@@ -6,7 +6,7 @@ using TMPro;
 
 public class check : MonoBehaviour
 {
-    public int score=0, streakScore=1;
+    public int score=0, streakScore=1, scoreOverall;
     public int checking=0;
     private string firstBtn, secondBtn;
     private GameObject firstClick, secondClick;
@@ -20,6 +20,7 @@ public class check : MonoBehaviour
     void Start()
     {
         UiObject.SetActive(false);
+        scoreOverall= PersistentData.Instance.GetScore();
     }
 
     void Update()
@@ -42,7 +43,7 @@ public class check : MonoBehaviour
                 streakScore+=1;
                 checking++;
                 Debug.Log("A Match! Score= "+score);
-                scoretext.SetText("Score: "+score);
+                // scoretext.SetText("Score: "+score);
                 // status.color=new Color(0f,1f,0f,0f);
                 status.SetText("Correct");
                 winSoundEffect.Play();
@@ -64,7 +65,7 @@ public class check : MonoBehaviour
             else{
                 score-=10;
                 streakScore=1;
-                scoretext.SetText("Score: "+ score);
+                // scoretext.SetText("Score: "+ score);
                 // status.color=new Color(1f,0f,0f,0f);
                 status.SetText("Incorrect");
                 loseSoundEffect.Play();
@@ -74,9 +75,14 @@ public class check : MonoBehaviour
                 firstClick=null;
                 secondClick=null;
             }
+            scoretext.SetText("Score:"+ scoreOverall);
+            updateScore();
         }
         // btn.SetActive(false);
         // Debug.Log(btnTxt.name);
-
+        
     }
+    public void updateScore(){
+            PersistentData.Instance.SetScore(score+scoreOverall);
+        }
 }

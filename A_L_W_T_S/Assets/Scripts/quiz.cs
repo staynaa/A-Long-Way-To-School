@@ -12,13 +12,14 @@ public class quiz : MonoBehaviour
     private List<int> alreadyAsked=new List<int>();
     [SerializeField] List<TextMeshProUGUI> choicesBtn=new List<TextMeshProUGUI>();
     [SerializeField] TextMeshProUGUI scoreText, statusText;
-    public int score=0, quesNum=1,streakScore=1;
+    public int score=0, quesNum=1,streakScore=1, scoreOverall;
     [SerializeField] GameObject curFlag;
     [SerializeField] private AudioSource winSoundEffect;
     [SerializeField] private AudioSource loseSoundEffect;
     void Start()
     {
         flagImg= curFlag.GetComponent<Image>(); //get image component
+        scoreOverall= PersistentData.Instance.GetScore();
         nextFlag();
     }
     // Update is called once per frame
@@ -84,9 +85,14 @@ public class quiz : MonoBehaviour
             streakScore=1; //lose streak score
             loseSoundEffect.Play();
         }
-        scoreText.SetText("Score: "+score);
+        // scoreText.SetText("Score: "+score);
+        scoreText.SetText("Score: "+ scoreOverall);
+        updateScore();
         quesNum++;
 
         nextFlag();
     }
+     public void updateScore(){
+        PersistentData.Instance.SetScore(score+scoreOverall);
+     }
 }

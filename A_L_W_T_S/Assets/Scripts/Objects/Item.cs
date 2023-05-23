@@ -34,13 +34,14 @@ public class Item : MonoBehaviour
     [SerializeField] public UnityEvent consumeEvent;
 
     [SerializeField] public static int score = 0;
+    public int scoreOverall;
     [SerializeField] public TextMeshProUGUI scoreTxt;
 
     // Start is called before the first frame update
     void Start()
     {
-        scoreTxt.text = "Score:" + score;
-        
+        scoreOverall= PersistentData.Instance.GetScore();
+        scoreTxt.text = "Score:" + scoreOverall;
     }
 
     // Update is called once per frame
@@ -88,7 +89,7 @@ public class Item : MonoBehaviour
                 gameObject.SetActive(false);
 
                 score=score+10;
-                PersistentData.Instance.SetScore(score);
+                PersistentData.Instance.SetScore(score+scoreOverall);
                
                 break;
 
